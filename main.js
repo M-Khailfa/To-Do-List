@@ -40,3 +40,16 @@ addButton.onclick = function () {
 };
 
 tasks.forEach(task => createTask(task));
+
+input.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    let value = input.value;
+    if (value === "") return;
+    input.value = ""; 
+    value = value.trim();
+    let taskObj = {id: counterId++, title: value}
+    tasks.push(taskObj);
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+    createTask(taskObj)
+  }
+});
